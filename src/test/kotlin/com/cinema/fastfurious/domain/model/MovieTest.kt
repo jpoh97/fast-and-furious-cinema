@@ -1,10 +1,11 @@
 package com.cinema.fastfurious.domain.model
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
-import java.util.*
+import java.util.Collections
 
 @DisplayName("Person domain tests")
 class MovieTest {
@@ -30,7 +31,7 @@ class MovieTest {
         val movie1 = Movie(id = 1, shows, reviews)
         val movie2 = Movie(id = 2, shows, reviews)
 
-        assertEquals(movie1, movie2)
+        assertNotEquals(movie1, movie2)
     }
 
 }

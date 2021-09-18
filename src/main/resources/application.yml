@@ -4,7 +4,7 @@ spring:
     name: Show fast and furious movies
 
   datasource:
-    url: file:./data/fast-and-furious
+    url: mem:///data/fast-and-furious
     username: sa
     password:
 
@@ -12,6 +12,20 @@ spring:
     default-property-inclusion: non_absent
     serialization.write_enums_using_to_string: true
     deserialization.read_enums_using_to_string: true
+
+  r2dbc:
+    url: r2dbc:h2:${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+  flyway:
+    url: jdbc:h2:${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    schemas: PUBLIC
+    sqlMigrationPrefix: V
+    sqlMigrationSuffix: .sql
+    sqlMigrationSeparator: _
 
 logging:
 

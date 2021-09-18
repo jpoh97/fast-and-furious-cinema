@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS movie;
+
+CREATE TABLE movie (
+  id         NOT NULL PRIMARY KEY,
+  imdb_id   VARCHAR(32) NOT NULL
+)
+DEFAULT CHARSET = utf8;

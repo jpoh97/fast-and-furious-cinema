@@ -14,7 +14,7 @@ class MovieTest {
     @Test
     fun `2 movies with the same data must be equal`() {
         val currentTime = LocalDateTime.now().plusDays(1)
-        val shows = Collections.singletonList(Show(time = currentTime, price = 20.0))
+        val shows = Collections.singletonList(Show(time = currentTime, price = 42.0))
         val reviews = Collections.singletonList(ReviewRating(5f))
         val movie1 = Movie(id = 1, shows, reviews)
         val movie2 = Movie(id = 1, shows, reviews)
@@ -25,7 +25,7 @@ class MovieTest {
     @Test
     fun `2 movies with the different data must be not equal`() {
         val tomorrowTime = LocalDateTime.now().plusDays(1)
-        val shows = Collections.singletonList(Show(time = tomorrowTime, price = 20.0))
+        val shows = Collections.singletonList(Show(time = tomorrowTime, price = 42.0))
         val reviews = Collections.singletonList(ReviewRating(5f))
         val movie1 = Movie(id = 1, shows, reviews)
         val movie2 = Movie(id = 2, shows, reviews)
@@ -35,11 +35,19 @@ class MovieTest {
 
     @Test
     fun `showtime in the past should throws IllegalArgumentException`() {
-        val yesterdayTime = LocalDateTime.now().minusDays(1)
         val invalidShowtime = assertThrows<IllegalArgumentException> {
-            Show(time = yesterdayTime, price = 20.0)
+            Show(time =  LocalDateTime.now().minusDays(1), price = 42.0)
         }
 
         assertEquals("The showtime can not be in the past", invalidShowtime.message)
+    }
+
+    @Test
+    fun `showtime with negative price should throws IllegalArgumentException`() {
+        val invalidShowtime = assertThrows<IllegalArgumentException> {
+            Show(time =  LocalDateTime.now().plusDays(1), price = -42.0)
+        }
+
+        assertEquals("The price must be greater or equals to zero", invalidShowtime.message)
     }
 }

@@ -1,4 +1,4 @@
-package com.fastfurious.fastandfuriouscinema
+package com.cinema.fastfurious
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

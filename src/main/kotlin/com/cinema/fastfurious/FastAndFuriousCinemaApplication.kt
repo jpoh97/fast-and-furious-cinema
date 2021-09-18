@@ -1,4 +1,4 @@
-package com.fastfurious.fastandfuriouscinema
+package com.cinema.fastfurious
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

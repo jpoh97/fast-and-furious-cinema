@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import java.time.LocalDateTime
 import java.util.Collections
 
@@ -49,5 +51,15 @@ class MovieTest {
         }
 
         assertEquals("The price must be greater or equals to zero", invalidShowtime.message)
+    }
+
+    @ParameterizedTest
+    @ValueSource(floats = [ 0.9f, 5.1f, 0f, -3f ])
+    fun `review rating with invalid value should throws IllegalArgumentException`(price: Float) {
+        val invalidShowtime = assertThrows<IllegalArgumentException> {
+            ReviewRating(value = price)
+        }
+
+        assertEquals("The review rating must be between 1 and 5 starts", invalidShowtime.message)
     }
 }

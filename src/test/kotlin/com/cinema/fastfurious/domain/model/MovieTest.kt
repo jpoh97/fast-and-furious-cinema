@@ -18,8 +18,8 @@ class MovieTest {
         val currentTime = LocalDateTime.now().plusDays(1)
         val shows = Collections.singletonList(Show(time = currentTime, price = 42.0))
         val reviews = Collections.singletonList(ReviewRating(5f))
-        val movie1 = Movie(id = 1, shows, reviews)
-        val movie2 = Movie(id = 1, shows, reviews)
+        val movie1 = Movie(id = 1, imdbID = "tt0232500", shows, reviews)
+        val movie2 = Movie(id = 1, imdbID = "tt0232500", shows, reviews)
 
         assertEquals(movie1, movie2)
     }
@@ -29,8 +29,8 @@ class MovieTest {
         val tomorrowTime = LocalDateTime.now().plusDays(1)
         val shows = Collections.singletonList(Show(time = tomorrowTime, price = 42.0))
         val reviews = Collections.singletonList(ReviewRating(5f))
-        val movie1 = Movie(id = 1, shows, reviews)
-        val movie2 = Movie(id = 2, shows, reviews)
+        val movie1 = Movie(id = 1, imdbID = "tt0232500", shows, reviews)
+        val movie2 = Movie(id = 2, imdbID = "tt0322259", shows, reviews)
 
         assertNotEquals(movie1, movie2)
     }

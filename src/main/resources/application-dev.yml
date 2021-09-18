@@ -1,0 +1,8 @@
+flyway:
+  url: jdbc:h2:${spring.datasource.url}
+  user: ${spring.datasource.username}
+  password: ${spring.datasource.password}
+  schemas: PUBLIC
+  sqlMigrationPrefix: V
+  sqlMigrationSuffix: .sql
+  sqlMigrationSeparator: _

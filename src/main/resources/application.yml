@@ -1,0 +1,30 @@
+spring:
+
+  application:
+    name: Show fast and furious movies
+
+  datasource:
+    url: file:./data/fast-and-furious
+    username: sa
+    password:
+
+  jackson:
+    default-property-inclusion: non_absent
+    serialization.write_enums_using_to_string: true
+    deserialization.read_enums_using_to_string: true
+
+logging:
+
+  file: logs/file.log
+  pattern:
+    console: '%d %-5level [%thread] %logger : %msg%n'
+    file: '%d %-5level [%thread] %logger : %msg%n'
+  level:
+    org.springframework.data.r2dbc: debug
+    com.cronusrhea: debug
+
+server:
+  port: 8090
+
+  http2:
+    enabled: true

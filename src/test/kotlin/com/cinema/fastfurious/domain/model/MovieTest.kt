@@ -16,7 +16,7 @@ class MovieTest {
     @Test
     fun `2 movies with the same data must be equal`() {
         val currentTime = LocalDateTime.now().plusDays(1)
-        val shows = Collections.singletonList(Show(time = currentTime, price = 42.0))
+        val shows = Collections.singletonList(Show(movieId = 1, time = currentTime, price = 42.0))
         val reviews = Collections.singletonList(ReviewRating(5f))
         val movie1 = Movie(id = 1, imdbID = "tt0232500", shows, reviews)
         val movie2 = Movie(id = 1, imdbID = "tt0232500", shows, reviews)
@@ -27,7 +27,7 @@ class MovieTest {
     @Test
     fun `2 movies with the different data must be not equal`() {
         val tomorrowTime = LocalDateTime.now().plusDays(1)
-        val shows = Collections.singletonList(Show(time = tomorrowTime, price = 42.0))
+        val shows = Collections.singletonList(Show(movieId = 1, time = tomorrowTime, price = 42.0))
         val reviews = Collections.singletonList(ReviewRating(5f))
         val movie1 = Movie(id = 1, imdbID = "tt0232500", shows, reviews)
         val movie2 = Movie(id = 2, imdbID = "tt0322259", shows, reviews)
@@ -38,7 +38,7 @@ class MovieTest {
     @Test
     fun `showtime in the past should throws IllegalArgumentException`() {
         val invalidShowtime = assertThrows<IllegalArgumentException> {
-            Show(time =  LocalDateTime.now().minusDays(1), price = 42.0)
+            Show(movieId = 1, time =  LocalDateTime.now().minusDays(1), price = 42.0)
         }
 
         assertEquals("The showtime can not be in the past", invalidShowtime.message)
@@ -47,7 +47,7 @@ class MovieTest {
     @Test
     fun `showtime with negative price should throws IllegalArgumentException`() {
         val invalidShowtime = assertThrows<IllegalArgumentException> {
-            Show(time =  LocalDateTime.now().plusDays(1), price = -42.0)
+            Show(movieId = 1, time =  LocalDateTime.now().plusDays(1), price = -42.0)
         }
 
         assertEquals("The price must be greater or equals to zero", invalidShowtime.message)

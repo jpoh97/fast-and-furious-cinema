@@ -1,5 +1,3 @@
-truncate table movie;
-
 insert into movie
     (id, imdb_id)
 values

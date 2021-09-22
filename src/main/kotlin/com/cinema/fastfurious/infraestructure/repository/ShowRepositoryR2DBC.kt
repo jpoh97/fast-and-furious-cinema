@@ -4,7 +4,7 @@ import com.cinema.fastfurious.domain.model.Show
 import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import reactor.core.publisher.Mono
 
-interface ShowRepositoryR2DBC: ReactiveCrudRepository<Show, Int> {
+interface ShowRepositoryR2DBC : ReactiveCrudRepository<Show, Int> {
 
     fun deleteAllByMovieId(movieId: Int): Mono<Boolean>
 

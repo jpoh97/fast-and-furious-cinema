@@ -3,7 +3,7 @@ package com.cinema.fastfurious.infraestructure.repository
 import com.cinema.fastfurious.domain.MovieRepository
 import com.cinema.fastfurious.domain.model.Show
 import org.springframework.stereotype.Repository
-import org.springframework.transaction.annotation.Transactional
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Repository
@@ -16,9 +16,13 @@ class MovieRepositoryImpl(
         return movieRepositoryR2DBC.existsById(movieId)
     }
 
-    @Transactional
     override fun replaceShows(movieId: Int, shows: List<Show>): Mono<Void> {
         return showRepositoryR2DBC.deleteAllByMovieId(movieId)
             .flatMap { showRepositoryR2DBC.saveAll(shows).then() }
+
+    }
+
+    override fun findAllShows(): Flux<Show> {
+        return showRepositoryR2DBC.findAll()
     }
 }

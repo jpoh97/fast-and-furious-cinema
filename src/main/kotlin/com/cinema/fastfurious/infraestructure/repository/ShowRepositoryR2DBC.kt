@@ -6,6 +6,6 @@ import reactor.core.publisher.Mono
 
 interface ShowRepositoryR2DBC: ReactiveCrudRepository<Show, Int> {
 
-    fun deleteAllByMovieId(movieId: Int): Mono<Void>
+    fun deleteAllByMovieId(movieId: Int): Mono<Boolean>
 
 }

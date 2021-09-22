@@ -1,4 +1,4 @@
-package com.cinema.fastfurious.application
+package com.cinema.fastfurious.application.use_cases
 
 import com.cinema.fastfurious.application.response.ShowTime
 import com.cinema.fastfurious.domain.MovieRepository
@@ -8,8 +8,6 @@ import reactor.core.publisher.Flux
 @Service
 class GetMovieTimes(private val movieRepository: MovieRepository) {
 
-    fun execute(): Flux<ShowTime> {
-        return movieRepository.findAllShows()
-            .map { ShowTime(movieId = it.movieId, time = it.time) }
-    }
+    fun execute(): Flux<ShowTime> =
+        movieRepository.findAllShows().map { ShowTime(movieId = it.movieId, time = it.time) }
 }

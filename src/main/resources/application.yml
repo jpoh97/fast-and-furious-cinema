@@ -42,3 +42,6 @@ server:
 
   http2:
     enabled: true
+
+imdb:
+  apiKey: ${IMDB_API_KEY}

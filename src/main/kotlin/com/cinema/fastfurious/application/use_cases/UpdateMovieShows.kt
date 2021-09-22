@@ -1,4 +1,4 @@
-package com.cinema.fastfurious.application
+package com.cinema.fastfurious.application.use_cases
 
 import com.cinema.fastfurious.domain.DomainException
 import com.cinema.fastfurious.domain.MovieRepository

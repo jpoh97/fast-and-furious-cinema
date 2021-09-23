@@ -31,4 +31,16 @@ class GetMovieTimesTest {
         val showTime2 = ShowTime(show2.movieId, show2.time)
         StepVerifier.create(movieTimes).expectNext(showTime1).expectNext(showTime2).verifyComplete()
     }
+
+    @Test
+    fun `get empty movie times list successfully`() {
+        val movieRepository = mockk<MovieRepository>()
+        val getMovieTimes = GetMovieTimes(movieRepository)
+
+        every { movieRepository.findAllShows() } returns Flux.fromStream(Stream.empty())
+
+        val movieTimes = getMovieTimes.execute()
+
+        StepVerifier.create(movieTimes).expectNextCount(0).verifyComplete()
+    }
 }

@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import java.time.LocalDateTime
 import java.util.Collections
 
-@DisplayName("Person domain tests")
+@DisplayName("Movie domain tests")
 class MovieTest {
 
     @Test

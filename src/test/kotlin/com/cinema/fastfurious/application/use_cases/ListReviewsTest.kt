@@ -21,9 +21,9 @@ class ListReviewsTest {
 
         every { movieRepository.listReviewsByMovie(movieId = 42) } returns Flux.fromStream(Stream.of(reviewRating1))
 
-        val ratedMovie = listReviewsByMovie.execute(movieId = 42)
+        val listedMovies = listReviewsByMovie.execute(movieId = 42)
 
-        StepVerifier.create(ratedMovie).expectNext(reviewRating1).verifyComplete()
+        StepVerifier.create(listedMovies).expectNext(reviewRating1).verifyComplete()
     }
 
 
@@ -34,8 +34,8 @@ class ListReviewsTest {
 
         every { movieRepository.listReviewsByMovie(movieId = 42) } returns Flux.fromStream(Stream.empty())
 
-        val ratedMovie = listReviewsByMovie.execute(movieId = 42)
+        val listedMovies = listReviewsByMovie.execute(movieId = 42)
 
-        StepVerifier.create(ratedMovie).verifyComplete()
+        StepVerifier.create(listedMovies).verifyComplete()
     }
 }

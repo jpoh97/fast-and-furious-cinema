@@ -15,14 +15,14 @@ import java.util.*
 import java.util.stream.Stream
 
 @DisplayName("Movie repository implementation tests")
-class MovieRepositoryImplTest {
+class MovieRepositoryH2Test {
 
     @Test
     fun `exists return true`() {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val movieId: Int = 42
 
         every { movieRepositoryR2DBC.existsById(movieId) } returns Mono.just(true)
@@ -37,7 +37,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val movieId: Int = 42
 
         every { movieRepositoryR2DBC.existsById(movieId) } returns Mono.just(false)
@@ -52,7 +52,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val shows = Collections.singletonList(Show(id = 1, movieId = 42, time = LocalDateTime.now().plusDays(1), price = 7.0))
 
         every { showRepositoryR2DBC.deleteAllByMovieId(movieId = 42) } returns Mono.just(true)
@@ -68,7 +68,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val show = Show(id = 1, movieId = 42, time = LocalDateTime.now().plusDays(1), price = 7.0)
 
         every { showRepositoryR2DBC.findAll() } returns Flux.fromStream(Stream.of(show))
@@ -83,7 +83,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
 
         every { showRepositoryR2DBC.findAll() } returns Flux.empty()
 
@@ -97,7 +97,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val movie = Movie(id = 42, imdbID = "tt0232500")
 
         every { movieRepositoryR2DBC.findById(42) } returns Mono.just(movie)
@@ -112,7 +112,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
 
         every { movieRepositoryR2DBC.findById(42) } returns Mono.empty()
 
@@ -126,7 +126,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val reviewRating = ReviewRating(id = 1, movieId = 42, value = 3f)
 
         every { reviewRatingRepositoryR2DBC.save(reviewRating) } returns Mono.just(reviewRating)
@@ -141,7 +141,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
         val reviewRating = ReviewRating(id = 1, movieId = 42, value = 3f)
 
         every { reviewRatingRepositoryR2DBC.findAllByMovieId(movieId = 42) } returns Flux.fromIterable(Collections.singletonList(reviewRating))
@@ -156,7 +156,7 @@ class MovieRepositoryImplTest {
         val movieRepositoryR2DBC = mockk<MovieRepositoryR2DBC>()
         val showRepositoryR2DBC = mockk<ShowRepositoryR2DBC>()
         val reviewRatingRepositoryR2DBC = mockk<ReviewRatingRepositoryR2DBC>()
-        val movieRepository = MovieRepositoryImpl(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
+        val movieRepository = MovieRepositoryH2(movieRepositoryR2DBC, showRepositoryR2DBC, reviewRatingRepositoryR2DBC)
 
         every { reviewRatingRepositoryR2DBC.findAllByMovieId(movieId = 42) } returns Flux.empty()
 

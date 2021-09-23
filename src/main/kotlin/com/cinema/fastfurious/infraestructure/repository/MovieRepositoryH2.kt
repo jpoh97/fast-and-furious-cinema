@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Repository
-class MovieRepositoryImpl(
+class MovieRepositoryH2(
     private val movieRepositoryR2DBC: MovieRepositoryR2DBC,
     private val showRepositoryR2DBC: ShowRepositoryR2DBC,
     private val reviewRatingRepositoryR2DBC: ReviewRatingRepositoryR2DBC

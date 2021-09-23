@@ -4,12 +4,14 @@ import com.cinema.fastfurious.domain.MovieRepository
 import com.cinema.fastfurious.domain.model.Show
 import io.mockk.every
 import io.mockk.mockk
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 import java.time.LocalDateTime
 import java.util.*
 
+@DisplayName("Update movie show times use case tests")
 class UpdateMovieShowsTest {
 
     @Test

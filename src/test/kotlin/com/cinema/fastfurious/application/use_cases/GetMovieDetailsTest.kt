@@ -39,4 +39,18 @@ class GetMovieDetailsTest {
 
         StepVerifier.create(movieDetails).expectNext(movieDetail).verifyComplete()
     }
+
+
+    @Test
+    fun `get movie details movie does not exist in our system throws error`() {
+        val movieRepository = mockk<MovieRepository>()
+        val movieDetailsRepository = mockk<MovieDetailsRepository>()
+        val getMovieDetails = GetMovieDetails(movieRepository, movieDetailsRepository)
+
+        every { movieRepository.findById(movieId = 42) } returns Mono.empty()
+
+        val movieDetails = getMovieDetails.execute(movieId = 42)
+
+        StepVerifier.create(movieDetails).expectErrorMessage("The movie does not exist in our system").verify()
+    }
 }
